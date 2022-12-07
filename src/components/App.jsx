@@ -5,6 +5,7 @@ const App = () => {
     const API = "https://api.thecatapi.com/v1/images/search?limit=3&api_key=izBVEXhb2XYhw6WFg9Qo2OXUgpfe0Nvq2NWDs7yFTAj53WgNvxlDhBBpHgSKt2Bf ";
     const API_KEY = "&api_key=live_izBVEXhb2XYhw6WFg9Qo2OXUgpfe0Nvq2NWDs7yFTAj53WgNvxlDhBBpHgSKt2Bf "
     const API_FAVORITES = `https://api.thecatapi.com/v1/favourites?${API_KEY}`;
+    const API_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?${API_KEY}`;
     
 
     //CatPics
@@ -97,14 +98,38 @@ const App = () => {
         const data = await res.json();
         console.log("save")
         console.log(res)
+        // console.log("DATA")
+        // console.log(data)
 
         if(res.status !== 200){
             setError(!error)
+        }else{
+            console.log("Gato agregado a Favoritos")
+            getFavoritePic();
         }
     }
 
 
+    const deleteFavoritePic = async (id)=>{
+        const res = await fetch(API_FAVORITES_DELETE(id), {
+            method: "DELETE",
+            headers:{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                image_id: id
+            })
+                });
+        const data = await res.json();
+            if(res.status !== 200){
+                setError(!error)
+            } else{
+                console.log("Gato eliminado de Favoritos")
+                getFavoritePic();
+            }    
 
+
+            }
 
     // const addFavorites = (currentPic) => {
     //     setFavorites(state => {
@@ -145,11 +170,17 @@ const App = () => {
             <h1>Favorites</h1>
             <div className='pics-wrapper'>
                 
-                <div>
+                
                     {favorites.map((item) => (
-                        <img height={150} width={150} src={item.image.url} key={item.id}></img>
+                       
+                        <React.Fragment key={item.id}>
+                        
+                        <img height={150} width={150} src={item.image.url} ></img>
+                        <button onClick={() => deleteFavoritePic(item.id)}  >Eliminar de Favoritos</button>
+
+                        </React.Fragment>
                     ))}
-                </div>
+                
             </div>
         </section>
     </div>
