@@ -69,7 +69,7 @@ const App = () => {
         
     }
 
-    //loads the pics
+    //loads the favorite pics 
     const getFavoritePic = async () =>{
         const res = await fetch(API_FAVORITES)
         const data = await res.json()
@@ -144,8 +144,12 @@ const App = () => {
         <section>
             <h1>Favorites</h1>
             <div className='pics-wrapper'>
-                Aqui van mis favoritos
-
+                
+                <div>
+                    {favorites.map((item) => (
+                        <img height={150} width={150} src={item.image.url} key={item.id}></img>
+                    ))}
+                </div>
             </div>
         </section>
     </div>
