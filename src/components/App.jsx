@@ -25,24 +25,24 @@ const App = () => {
         getPic2();
         getFavoritePic();
         getFavoritePic();
-        //console.log(API_FAVORITES)
+        
     }, [])
 
 
-    const getPic = () =>{
-        fetch(API)
-        .then(res => {
-            res.json();
-            //console.log(res)
-            // en este console log se ve lo del video donde puedo ver el status de la llamada 
-        })
-        .then(data => {
+    // const getPic = () =>{
+    //     fetch(API)
+    //     .then(res => {
+    //         res.json();
+    //         console.log(res)
+            
+    //     })
+    //     .then(data => {
         
-            setFoto(data[0].url)
-            setFoto2(data[1].url)
-            setFoto3(data[2].url)
-        })
-    }
+    //         setFoto(data[0].url)
+    //         setFoto2(data[1].url)
+    //         setFoto3(data[2].url)
+    //     })
+    // }
 
 
     // GetPic async await version
@@ -50,7 +50,7 @@ const App = () => {
         const res = await fetch(API)
         const data = await res.json()
         if(res.status !== 200){
-            setError(!error)
+            setError(true)
         }else {
             
             setFoto(data[0].url)
@@ -89,6 +89,7 @@ const App = () => {
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
+                // "X-API-KEY": "live_izBVEXhb2XYhw6WFg9Qo2OXUgpfe0Nvq2NWDs7yFTAj53WgNvxlDhBBpHgSKt2Bf"
             },
             body: JSON.stringify({
                 image_id: id
@@ -137,11 +138,13 @@ const App = () => {
     //     } )
     // }
 
-    
+    // const uploadPicture = async ()=>{
+
+    // }
   return (
     <div>
         <h1>Cat API App</h1>
-        <span id='error'>{error ? "Hubo un error" : null}</span>
+        <span id='error'>{error ? "Hubo un error" : ""}</span>
 
 
 
@@ -165,6 +168,15 @@ const App = () => {
         <button onClick={getPic2}
         >Refresh Pics
         </button>
+
+        {/* <section>
+            <h1>Upload your picture</h1>
+            <form>
+                <input type="file" name="file" id="file" />
+                <button type='button' onClick={uploadPicture()}>Send Picture</button>
+            </form>
+
+        </section> */}
 
         <section>
             <h1>Favorites</h1>
