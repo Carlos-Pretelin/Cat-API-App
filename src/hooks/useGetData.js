@@ -21,23 +21,6 @@ const useGetData = () => {
 
     const [error, setError] = useState(false);
 
-    
-
-
-    // const getPic = () =>{
-    //     fetch(API)
-    //     .then(res => {
-    //         res.json();
-    //         console.log(res)
-            
-    //     })
-    //     .then(data => {
-        
-    //         setFoto(data[0].url)
-    //         setFoto2(data[1].url)
-    //         setFoto3(data[2].url)
-    //     })
-    // }
 
 
     // GetPic async await version
