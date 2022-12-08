@@ -21,13 +21,15 @@ const App = () => {
     useEffect(()=>{
         getPic2();
         getFavoritePic();
-        getFavoritePic();
+        
         
     }, [])
 
   return (
     <div>
-        <h1>Cat API App</h1>
+       <div className='CatRoulette'>
+
+       <h1>Cat API App</h1>
         <span id='error'>{error ? "Hubo un error" : ""}</span>
 
 
@@ -53,14 +55,24 @@ const App = () => {
         >Refresh Pics
         </button>
 
-        {/* <section>
-            <h1>Upload your picture</h1>
-            <form>
-                <input type="file" name="file" id="file" />
-                <button type='button' onClick={uploadPicture()}>Send Picture</button>
-            </form>
+       
 
-        </section> */}
+       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <section>
             <h1>Favorites</h1>
